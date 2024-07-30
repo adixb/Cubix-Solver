@@ -13,6 +13,7 @@ function Navbar() {
         <div className="text-gray-400 flex items-center gap-5 text-lg font-semibold">
             <p className='hover:text-black cursor-pointer'>How to Use ?</p>
            <a href='https://github.com/adixb' target='blank_'><p className='hover:text-black cursor-pointer'>Developer GitHub</p></a> 
+           <a href='https://app.eraser.io/workspace/40yG0lthVg2r06WCp312?origin=share' target='blank_'><p className='hover:text-black cursor-pointer'>Project Documentation</p></a> 
         </div>
     </nav>
     
