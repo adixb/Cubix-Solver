@@ -1,24 +1,18 @@
 import React from 'react'
 import Navbar from '../Components/Navbar'
 import WebcamCapture from '../Components/WebcamCapture'
-import { useState } from 'react'
+
 
 
 function SolvePage() {
 
-const [instructionsModal , setInstructionsModal] = useState(false) ; 
 
-const handleInstructions=()=>{
-  setInstructionsModal(true) ;
-  console.log(instructionsModal)
-  
-}
 
   return (
     <>
 
     <div className="  w-screen h-screen">
-    <Navbar instructionsModal={instructionsModal} handleInstructions={handleInstructions} />
+    <Navbar  />
 
     <div className=" w-screen h-auto flex items-center justify-center p-2 ">
       <div className=" m-2 w-1/2 border h-[80vh] mt-12 bg-yellow-400 flex flex-col items-center justify-center">
