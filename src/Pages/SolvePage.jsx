@@ -47,7 +47,7 @@ function SolvePage() {
               <p className="text-4xl text-white font-bold">
                 Upload Picture from your Device
               </p>
-              <input type="file" accept="image/*" onChange={handleImageChange} className="my-5 text-white font-bold" />
+              <input type="file" accept="image/*" onChange={handleImageChange} className="my-5 text-white font-bold cursor-pointer" />
               {previewImage && <img src={previewImage} alt="ImagePreview" style={{ width: '200px', height: '200px' }} />}
               <button
                 className="my-12  text-black bg-white p-2 font-semibold shadow-xl rounded-xl text-sm hover:text-white hover:bg-black"
