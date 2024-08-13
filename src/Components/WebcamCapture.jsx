@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Webcam from 'react-webcam';
 
-function WebcamCapture() {
+function WebcamCapture({ handleWebcamCapture }) {
   const videoConstraints = {
     width: 1000,
     height: 500,
@@ -10,13 +10,16 @@ function WebcamCapture() {
 
   const [imageWebCam, setImageWebCam] = useState(null);
   const [showImage, setShowImage] = useState(false);
+  const webcamRef = useRef(null);
 
   const handleCapture = () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    setImageWebCam(imageSrc);
     setShowImage(true);
     setTimeout(() => {
       setShowImage(false);
-      setImageWebCam(null);
-    },10000);
+      handleWebcamCapture(imageSrc); // Pass the captured image to parent
+    }, 10000);
   };
 
   return (
@@ -27,11 +30,11 @@ function WebcamCapture() {
             <img src={imageWebCam} alt="Captured" className="rounded-xl" />
           </div>
           <button
-                className="my-12  text-black bg-white p-2 font-semibold shadow-xl rounded-xl text-sm hover:text-white hover:bg-black"
-                
-              >
-                UPLOAD
-              </button>
+            className="my-12 text-black bg-white p-2 font-semibold shadow-xl rounded-xl text-sm hover:text-white hover:bg-black"
+            onClick={() => handleWebcamCapture(imageWebCam)} // Call with imageWebCam
+          >
+            UPLOAD
+          </button>
         </div>
       )}
       <Webcam
@@ -40,15 +43,12 @@ function WebcamCapture() {
         screenshotFormat='image/jpeg'
         width={1000}
         videoConstraints={videoConstraints}
+        ref={webcamRef}
         className='p-2 rounded-xl'
       >
         {({ getScreenshot }) => (
           <button
-            onClick={() => {
-              const imageSrc = getScreenshot();
-              setImageWebCam(imageSrc);
-              handleCapture();
-            }}
+            onClick={handleCapture}
             className='my-12 text-black bg-white p-2 font-semibold shadow-xl rounded-xl text-sm hover:text-white hover:bg-black'
           >
             Capture Photo
